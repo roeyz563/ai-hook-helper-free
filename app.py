@@ -1,16 +1,10 @@
-# app.py
-# Import libraries
 import streamlit as st
 from openai import OpenAI
 
-# 1. Set up the page
 st.set_page_config(page_title="AI Hook Helper", page_icon="🚀", layout="wide")
 st.title("🚀 AI Viral Hook Helper")
 st.markdown("Paste your video script below and get 5 viral hook options generated from proven viral templates.")
 
-# 2. Securely input your API Key. 
-# We use Streamlit's secrets management for deployment.
-# For local run, we'll use a sidebar input.
 with st.sidebar:
     st.header("Configuration")
     api_key = st.text_input("Enter your OpenAI API Key:", type="password")
@@ -22,8 +16,6 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**How to use:**\n1. Enter your API key.\n2. Paste your script in the main box.\n3. Click 'Generate Hooks'.")
 
-# 3. Load your hook templates. 
-# PASTE YOUR 257 HOOKS INSIDE THE TRIPLE QUOTES!
 hook_templates = """
 Here’s exactly how to [outcome]. [solution]. 
 Here’s exactly how you’re gonna [outcome].
@@ -284,11 +276,9 @@ After 3 years of cycling through [thing 1] and [thing 2], I [solution] because I
 2 years ago, I became addicted to [bad thing] every single day because I’d never felt more [bad emotion] in my LIFE.
 
 """
-# Paste ALL your 257 hooks inside the triple quotes above.
 
 hook_list = [hook.strip() for hook in hook_templates.split('\n') if hook.strip()]
 
-# 4. Define the system prompt (the AI's instructions)
 system_prompt = """
 You are an expert viral hook analyst. Your knowledge base is a list of proven hook templates.
 
@@ -311,7 +301,6 @@ RULES:
 - The generated hook must be a direct and logical application of the chosen template to the user's script.
 """
 
-# 5. Define the function that calls the AI (the same brain from Colab)
 def analyze_script_for_hooks(user_script):
     if not api_key:
         st.error("❌ Please enter your OpenAI API key in the sidebar first.")
@@ -345,24 +334,18 @@ def format_ai_response(raw_response):
     returns a clean, beautifully formatted version for the user.
     It adds line breaks after each section for better readability.
     """
-    # Check if the response has the expected structure
     if not raw_response or "<HOOK_ANALYSIS_START>" not in raw_response:
-        return raw_response  # Return as-is if it doesn't have the expected format
+        return raw_response
 
-    # Split the response into individual hook analysis blocks
-    hooks = raw_response.split('<HOOK_ANALYSIS_START>')[1:]  # Ignore anything before the first tag
+    hooks = raw_response.split('<HOOK_ANALYSIS_START>')[1:]
 
     formatted_output = ""
 
-    # Loop through each hook analysis block
     for i, hook in enumerate(hooks):
-        # Remove the closing tag and any extra whitespace
         hook_content = hook.replace('</HOOK_ANALYSIS_END>', '').strip()
         
-        # Add a nice header for each hook option
         formatted_output += f"### 🪝 Hook Option #{i+1}\n\n"
         
-        # Split the hook content into lines and process each line
         lines = hook_content.split('\n')
         for line in lines:
             line = line.strip()
@@ -372,31 +355,28 @@ def format_ai_response(raw_response):
                 formatted_output += f"**Why This Hook Works:**\n{line.replace('**Why This Hook Works:**', '').strip()}\n\n"
             elif line.startswith('**Generated Hook:**'):
                 formatted_output += f"**Generated Hook:**\n{line.replace('**Generated Hook:**', '').strip()}\n\n"
-            elif line:  # Add any other non-empty lines as they are
+            elif line:
                 formatted_output += f"{line}\n"
         
-        formatted_output += "---\n\n"  # Add a divider between hooks
+        formatted_output += "---\n\n"
 
     return formatted_output
 
-# 6. Create the main user interface: A text area and a button
 user_script = st.text_area("Paste your video script here:", height=200, placeholder="e.g., This video is about a new morning routine I've been using that has completely stopped my procrastination...")
 
 if st.button("Generate Hooks", type="primary"):
     if user_script:
-        # Call the function and get the result
         result = analyze_script_for_hooks(user_script)
         
-        # Display the result in a nice box
         if result:
             st.success("✅ Done! Here are your 5 viral hook options:")
             st.markdown("---")
             
-            # Clean and format the AI's response before displaying it
             cleaned_result = format_ai_response(result)
-            st.markdown(cleaned_result)  # <-- Now this shows the beautiful version
+            st.markdown(cleaned_result)
     else:
         st.warning("Please enter a script to generate hooks.")
 
 st.markdown("---")
+
 st.caption("AI Hook Helper v1.0 | Built with Streamlit & OpenAI")
