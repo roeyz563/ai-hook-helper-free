@@ -10,7 +10,7 @@ An AI-powered tool that analyzes your video scripts and generates 5 compelling v
 
 To use this tool, you need your own **FREE OpenAI API key**. This keeps the tool free for everyone!
 
-1.  **Get Your API Key:** [**Click here for detailed instructions**](#how-to-get-your-free-openai-api-key)
+1.  **Get Your API Key:** (See Instructions Below)
 2.  **Open the App:** Click the "Use the App Here" link above.
 3.  **Enter Your Key:** Paste your key into the sidebar of the app.
 4.  **Paste Your Script:** Type or paste your video script into the main box and click "Generate Hooks"!
