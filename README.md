@@ -26,7 +26,7 @@ To use this tool, you need your own **FREE OpenAI API key**. This keeps the tool
 2.  **Create a Free Account** using your email, or a Google/Microsoft account.
 3.  Once logged in, click on your profile picture in the top-right corner and select **"View API keys"**.
 4.  Click the **"Create new secret key"** button. Give it a name (e.g., "Hook Generator") and click **"Create secret key"**.
-5.  **CRITICAL:** A pop-up will show your new key. It will start with `sk-`. **Copy this key immediately!** You will not be able to see it again. Paste it into a secure note on your computer.
+5.  **CRITICAL:** A pop-up will show your new key. It will start with `sk-`. **Copy this key immediately!** You will not be able to see it again. Paste it into a secure note on your computer or phone.
 6.  New accounts receive **$5.00 of free credit**, which will last a very long time for this tool.
 
 **You're all set! Now go back to the app and paste your key into the sidebar.**
