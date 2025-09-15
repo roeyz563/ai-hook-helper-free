@@ -30,6 +30,11 @@ To use this tool, you need your own **FREE OpenAI API key**. This keeps the tool
 6.  New accounts receive **$5.00 of free credit**, which will last a very long time for this tool.
 
 **You're all set! Now go back to the app and paste your key into the sidebar.**
+
+Do I need to pay?
+Most new users receive $5.00 of free API credit to start, with no payment required.
+Occasionally, OpenAI may ask for a one-time small payment (usually ~$5) to activate your account and prevent fraud. If asked, this payment will be added to your account as usable credit.
+In either case, you will have credit to use. Generating hooks costs just pennies, so this will last a very long time.
 </details>
 
 ---
